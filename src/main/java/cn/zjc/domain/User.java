@@ -1,30 +1,48 @@
 package cn.zjc.domain;
 
-
-
-import com.alibaba.fastjson.annotation.JSONField;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author zhangjinci
- * @version 2016/9/19 16:05
+ * @version 2016/9/13 16:12
  * @function
  */
-public class User {
+@Entity
+@Table(name = "TB_AT_USER")
+public class User implements Serializable {
 
+    @Id
     private Integer id;
+    @Column(name = "USER_ID")
+    private Integer userId;
+    @Column(name = "NAME")
     private String name;
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "BIRTH")
     private Date birth;
-
-    public User(Integer id, String name,Date birth) {
-        this.id = id;
-        this.name = name;
-        this.birth = birth;
-    }
+    @Column(name = "EMAIL")
+    private String email;
 
     public User() {
+    }
+
+    public User(Integer id, Integer userId, String name, Date birth, String email) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
+    }
+
+    public User(Integer userId, String name, Date birth, String email) {
+        this.userId = userId;
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -51,12 +69,31 @@ public class User {
         this.birth = birth;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", name='" + name + '\'' +
                 ", birth=" + birth +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

@@ -20,7 +20,7 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public Object hello() {
-        User u = new User(1, "zjcscut",new Date());
+        User u = new User(1, "zjcscut",new Date(),"163#");
         logger.debug("u---->  " + u.toString());
         return u;
     }
